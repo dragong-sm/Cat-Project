@@ -66,5 +66,87 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
       DBUtil.close(con, pstmt);
     } return false;
     }
-  }
 
+    public static boolean deleteCat(String name) throws SQLException { //id 대신 이름으로 검색하여 삭제하도록 오버로딩
+      Connection con = null;
+      PreparedStatement pstmt = null;
+
+      try {
+        con = DBUtil.getConnection();
+        String sql = "DELETE FROM PRIMARY_TB WHERE SPECIES = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, name);
+        int result = pstmt.executeUpdate();
+
+        if (result == 1) {
+          return true;
+        }
+    } finally {
+      DBUtil.close(con, pstmt);
+    } return false;
+    }
+
+    public static boolean searchCat(int id) throws SQLException { //id로 검색
+      Connection con = null;
+      PreparedStatement pstmt = null;
+
+      try {
+        String idStr = String.valueOf(id);
+
+        con = DBUtil.getConnection();
+        String sql = "SELECT * FROM PRIMARY_TB WHERE ID_PK = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, idStr);
+        int result = pstmt.executeUpdate();
+
+        if (result == 1) {
+          return true;
+        }
+    } finally {
+      DBUtil.close(con, pstmt);
+    } return false;
+    }
+
+    public static boolean searchAllCat() throws SQLException { //모든 고양이 검색
+      Connection con = null;
+      PreparedStatement pstmt = null;
+
+      try {
+        con = DBUtil.getConnection();
+        String sql = "SELECT * FROM PRIMARY_TB";
+        pstmt = con.prepareStatement(sql);
+        int result = pstmt.executeUpdate();
+
+        if (result == 1) {
+          return true;
+        }
+    } finally {
+      DBUtil.close(con, pstmt);
+    } return false;
+    }
+
+    public static boolean updateCat(CatDTO cat) throws SQLException {
+      Connection con = null;
+      PreparedStatement pstmt = null;
+
+      try {
+        con = DBUtil.getConnection();
+        String sql = "UPDATE PRIMARY_TB SET SPECIES = ?, DESCRIPTION = ?, TEMPER = ?, HAIR_TYPE = ?, ORIGIN = ?, SIZE = ? WHERE ID_PK = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, cat.getSpecies());
+        pstmt.setString(2, cat.getDescription());
+        pstmt.setString(3, cat.getTemper());
+        pstmt.setString(4, cat.getHairType().name());
+        pstmt.setString(5, cat.getOrigin());
+        pstmt.setString(6, cat.getSize());
+        pstmt.setInt(7, cat.getId());
+        int result = pstmt.executeUpdate();
+
+        if (result == 1) {
+          return true;
+        }
+      } finally {
+        DBUtil.close(con, pstmt);
+      } return false;
+    }
+  }
