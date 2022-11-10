@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import exception.NotExistException;
 import model.dao.PictureDAO;
-import model.dao.PrimaryDAO;
-import model.dto.CatDTO;
 import model.dto.PictureDTO;
 
 public class PictureService {

@@ -6,12 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.dto.CatDTO;
 import model.dto.PictureDTO;
-//PictureDTO의 필드명 :  
-  //PIC_ID_PK
-  //PIC_URL : 사진 url 주소 
-  //PRIMARY_TB_ID_FK : 외래키 (Cat테이블의 ID_PK)
+
 import util.DBUtil;
 
 public class PictureDAO {
@@ -113,7 +109,6 @@ public class PictureDAO {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rset = null;
-    PictureDTO image = null;
     
     try {
       String idStr = String.valueOf(id);
