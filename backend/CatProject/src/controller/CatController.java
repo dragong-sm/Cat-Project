@@ -20,8 +20,7 @@ import org.json.*;
 @WebServlet("/cat")
 public class CatController {
   public void doService(HttpServletRequest request, HttpServletResponse response) throws SQLException, NotExistException, IOException{
-    System.out.println("서버 구동됨");
-	  
+    System.out.println("요청 접수 완료");  
     request.setCharacterEncoding("UTF-8");
     String command = request.getParameter("command");
 
@@ -48,7 +47,7 @@ public class CatController {
       //json을 response에 담아서 보내기
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
-      response.getWriter().write(json);
+      response.getWriter().write(json.toString());
     }
   }
 } 
