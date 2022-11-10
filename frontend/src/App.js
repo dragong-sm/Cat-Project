@@ -11,9 +11,6 @@ function App() {
   // 데이터는 db로 불러오기 !
   const [cats, setCats] = useState([]);
   useEffect(() => {
-    // const data = getData();
-    // setCats(data);
-
     // axios 사용
     const data = axiosData();
     data.then((data) => setCats(data));
