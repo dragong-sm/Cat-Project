@@ -109,7 +109,7 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
     } return false;
     }
 
-    public static ArrayList<CatDTO> searchAllCat() throws SQLException { //모든 고양이 검색
+    public static ArrayList<CatDTO> searchAllCats() throws SQLException { //모든 고양이 검색
       Connection con = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
