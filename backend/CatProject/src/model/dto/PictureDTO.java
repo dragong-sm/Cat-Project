@@ -7,9 +7,9 @@ public class PictureDTO {
     //PIC_URL : String (VARCHAR(200))
     //PRIMARY_TB_ID_FK : foreign key(int) //※주의 : 왜래키이므로 해당 테이블에 insert/update할 때는 먼저 PRIMARY_TB_ID_FK에 해당하는 행이 존재하는지 확인해야 한다.
 
-    private int picId;
-    private String picUrl;
-    private int primaryTbId;
+    private int picId; // 아이디
+    private String picUrl; // 이미지배열
+    private int primaryTbId; // 품종 정보
 
     //생성자 선언
     public PictureDTO(int picId, String picUrl, int primaryTbId) {

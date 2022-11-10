@@ -9,6 +9,7 @@ public class CatService {
 		return instance;
 	}
 	
+	public CatDTO get
 	
 	
 	
