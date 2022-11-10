@@ -19,6 +19,9 @@ import CatContents from "../components/CatContents";
 // 상세설명페이지
 export function About({ cats }) {
 
+  const [search, setSearch ] = useSearchParams();
+  const catId = search.get("catId");
+
   return (
     <div>
       {cats.map((cat) => (

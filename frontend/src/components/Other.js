@@ -32,7 +32,7 @@ function Other({ onUpdateToggle }) {
           setCheck((e) => !e);
         }}
       >
-        {isCheck ? "▼" : "▶"}
+        {isCheck ? "▼" : "▼"}
       </button>
       <h3>다른 종류 검색하기</h3>
 
