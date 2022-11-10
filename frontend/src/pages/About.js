@@ -2,26 +2,50 @@ import Detail from "../components/Detail";
 import MorePictures from "../components/MorePictures";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { getData } from "../api/getCats";
+import { getData, axiosData } from "../api/getCats";
 import data from "../db/mock.json";
+import { Link, Outlet, useParams, useSearchParams } from "react-router-dom";
+import {
+  Wrapper,
+  Main,
+  More,
+  MainImage,
+  Contents,
+  Article,
+  PreviousPage,
+} from "../styles/Style";
+import CatContents from "../components/CatContents";
 
 // 상세설명페이지
-export function About() {
-  // 데이터는 db로 불러오기 !
-  useEffect(() => {
-    const data = getData();
-    setCats(data);
-  }, []);
-
-  const [cats, setCats] = useState(data);
+export function About({ cats }) {
 
   return (
     <div>
-      {/* <h1> About test </h1> */}
-      <Detail cats={cats} />
-      {/* 1. 각 고양이의 데이터를 불러옴 (Detail) */}
-      {/* 2. Detail 안에서 고양이상세설명 + MorePictures 버튼 */}
-      {/* 3. MorePictures 버튼을 클릭하면 더많은 고양이사진 불러옴 */}
+      {cats.map((cat) => (
+        <div key={cat.species}>
+          <Wrapper>
+            <Article>
+              <b> " {cat.species} " </b>
+            </Article>
+            <PreviousPage>
+              <button>
+                <a href="" target="_blank">
+                  Move to previous page
+                </a>
+              </button>
+            </PreviousPage>
+            <Main>
+              <MainImage src={cat.photoURL[0]}></MainImage>
+              <Contents>
+                <CatContents cat={cat} />
+              </Contents>
+            </Main>
+            <More>
+              <MorePictures photos={cat.photoURL} />
+            </More>
+          </Wrapper>
+        </div>
+      ))}
     </div>
   );
 }
