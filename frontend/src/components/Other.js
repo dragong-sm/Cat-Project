@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 function Other({ onUpdateToggle }) {
@@ -22,19 +22,23 @@ function Other({ onUpdateToggle }) {
     align-content: center;
   `;
 
+  const [isCheck, setCheck] = useState(false);
 
   return (
     <div>
-      <h3><a
+      <button
         onClick={() => {
-          onUpdateToggle();
+          setCheck((e) => !e);
         }}
       >
+        {isCheck ? "▼" : "▶"}
+      </button>
+        <h3>
         다른 종류 검색하기
-      </a></h3>
+      </h3>
 
       {/* 고양이 품종 링크 리스트 넣기 */}
-      <Catboard>
+      {isCheck && (<Catboard>
       <Catnames>
       <div>
         <li><a href="#">랙돌</a></li>
@@ -50,7 +54,7 @@ function Other({ onUpdateToggle }) {
         <li><a href="#">고양이</a></li>
       </div>
       </Catnames>
-      </Catboard>
+      </Catboard>)}
     </div>
   );
 }
