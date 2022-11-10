@@ -3,12 +3,12 @@ package model.dto;
 public class CatDTO {
   // Cat이 갖는 속성
     /*  ID_PK : primary key(int, auto_increment)
-        SPECIES : String  (VARCHAR(45))
-        DESCRIPTION : STRING (VARCHAR(200))
-        TEMPER : STRING (VARCHAR(45))
+        SPECIES : String  (VARCHAR(45)) 종명칭
+        DESCRIPTION : STRING (VARCHAR(200)) 설명
+        TEMPER : STRING (VARCHAR(45)) 성격
         HAIR_TYPE : ENUM (단모종, 장모종, 기타)
-        ORIGIN : STRING (VARCHAR(45))
-        SIZE : STRING (VARCHAR(45))
+        ORIGIN : STRING (VARCHAR(45)) 출생지
+        SIZE : STRING (VARCHAR(45)) 
       */
 
     public enum HairType {
@@ -20,7 +20,7 @@ public class CatDTO {
     private String description;
     private String temper;
     private HairType hairType; //※ hairType(HAIR_TYPE)은 enum이므로, DB에 저장할 때는 hairType.name()을 넣는다.
-    private String origin;
+    private String origin;  
     private String size;
 
     //생성자 선언
@@ -85,8 +85,15 @@ public class CatDTO {
       return hairType;
     }
 
-    public void setHairType(HairType hairType) {
-      this.hairType = hairType;
+    //String을 받아서 해당하는 enum hairType으로 지정
+    public void setHairType(String hairType) {
+      if(hairType.equals("단모종")) {
+        this.hairType = HairType.단모종;
+      } else if(hairType.equals("장모종")) {
+        this.hairType = HairType.장모종;
+      } else {
+        this.hairType = HairType.기타;
+      }
     }
 
     public String getOrigin() {
