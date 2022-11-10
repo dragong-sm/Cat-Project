@@ -2,9 +2,11 @@
   {
     "id": 1,
     "species": "노르웨이숲고양이",
-    "personality": "cute",
-    "weight": "4kg",
-    "hair": "long",
+    "description": "수백 년의 세월을 거쳐 북유럽의 혹독한 날씨를 견딜 수 있는 방수성 장모로 진화한 것으로 보인다. 성장하는 데에 오래 걸리지만 완전히 어른이 되었을 때의 큼직한 체격은 야성미를 더욱 더해준다.",
+    "origin": "노르웨이, 자연적 발생",
+    "personality": "야성적인 면과 상냥한 면을 겸비하고 있다. 사람을 좋아하고 끈끈한 유대를 중시하는 사랑스러운 성격이면서 나무타기를 좋아하는 장난꾸러기다.",
+    "weight": "5.5~7kg",
+    "hair": "중장모",
     "photoURL": [
       "https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200309_166%2F1583725050886CTWAw_JPEG%2F19860647745281435_-647047757.jpeg",
       "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MThfNjcg%2FMDAxNjUwMjc3MTI2NTE5.k39GM8pvsN_6NlBJJ8SEyVUC1Y9iFyhPKZ8CXn7DGhYg.m59ag-_rzYLjYaEISlBlJE32VQz1N8nTha5V8nqyF6kg.JPEG.wilddog33%2F57.JPG&type=a340",
@@ -15,9 +17,11 @@
   {
     "id": 2,
     "species": "스핑크스",
-    "personality": "wild",
-    "weight": "3kg",
-    "hair": "no",
+    "description": "털이 전혀 없는 것처럼 보이나, 실제로는 복숭아의 털과 같은 매우 짧고 부드러운 털이 나 있다. 턱수염과 눈썹이 있는 경우도 있다. 드물게 꼬리의 끝 부분에 짧은 털이 나 술처럼 보이기도 한다.",
+    "origin": "캐나다",
+    "personality": "다른 고양이와 차별되는 스핑크스 고양이의 대표적인 성격이 사람과의 친화력이다. 이 종은 다른 종들처럼 사람과 일정한 거리를 두는 예가 드물 정도로 사람을 좋아하며 잘 따른다.",
+    "weight": "2.5~5kg",
+    "hair": "단모",
     "photoURL": [
       "https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200209_243%2F1581229366427K8FiM_JPEG%2F359951579074603513.jpg",
       "https://search.pstatic.net/common?type=f&size=260x260&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200209_214%2F1581229340435aTrFL_JPEG%2F336871579074606436.jpg",
