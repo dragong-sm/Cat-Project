@@ -12,5 +12,8 @@ public class PictureController {
 		return instance;
 	}
 	
+	public void searchPictureByFK(int fk) {
+		
+	}
 	
 }
