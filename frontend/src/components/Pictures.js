@@ -18,9 +18,7 @@ function Pictures() {
   const Cats = styled.div`
     display: flex;
     flex-direction: column;
-  `
-
-  
+  `  
 
   return (
   <Catbox>

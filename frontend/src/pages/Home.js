@@ -2,7 +2,7 @@ import Other from "../components/Other";
 import Pictures from "../components/Pictures";
 import React, { useState } from "react";
 
-export function Home() {
+export function Home({cats}) {
   const [UpdateToggle, setUpdateToggle] = useState(false);
   const onUpdateToggle = () => {
     setUpdateToggle(!UpdateToggle);
