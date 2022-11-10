@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/controller/CatController.java=UTF-8
+encoding//src/controller/PictureController.java=UTF-8
+encoding//src/exception/NotExistException.java=UTF-8
+encoding//src/model/dao/PictureDAO.java=UTF-8
+encoding//src/model/dao/PrimaryDAO.java=UTF-8
+encoding//src/model/dto/CatDTO.java=UTF-8
+encoding//src/model/dto/PictureDTO.java=UTF-8
+encoding//src/service/CatService.java=UTF-8
+encoding//src/service/PictureService.java=UTF-8
+encoding//src/test/TestView.java=UTF-8
+encoding//src/util/DBUtil.java=UTF-8
