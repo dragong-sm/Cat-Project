@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import exception.NotExistException;
 import model.dao.PictureDAO;
@@ -16,7 +17,7 @@ public class PictureService {
 	}
 	
 	// 조회
-	public PictureDTO searchPictureByFK(int fk) throws SQLException, NotExistException {
+	public ArrayList<PictureDTO> searchPictureByFK(int fk) throws SQLException, NotExistException {
 		return PictureDAO.searchPictureByFK(fk);
 	}
 	

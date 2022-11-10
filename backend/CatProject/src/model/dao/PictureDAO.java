@@ -2,9 +2,11 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import model.dto.CatDTO;
 import model.dto.PictureDTO;
 //PictureDTO의 필드명 :  
   //PIC_ID_PK
@@ -107,7 +109,7 @@ public class PictureDAO {
 //  }
 
   //FK인 PRIMARY_TB_ID_FK로 검색시 해당하는 사진들을 모두 검색해주는 메소드
-  public static PictureDTO searchPictureByFK(int fk) throws SQLException {
+  public static ArrayList<PictureDTO> searchPictureByFK(int fk) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rset = null;
@@ -121,13 +123,18 @@ public class PictureDAO {
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, idStr);
       rset = pstmt.executeQuery();
-    		  
-      if (rset.next()) {
-        image = new PictureDTO(rset.getInt(1), rset.getString(2), rset.getInt(3));
-      }
+      ArrayList<PictureDTO> pictureList = new ArrayList<PictureDTO>();		  
+      while (rset.next()) {
+          PictureDTO picture = new PictureDTO();
+          picture.setPicId((rset.getInt("PIC_ID_PK")));
+          picture.setPicUrl(rset.getString("PIC_URL"));
+          picture.setPrimaryTbId(rset.getInt("PRIMARY_TB_ID_FK"));
+          pictureList.add(picture);
+        }
+        return pictureList;
   } finally {
     DBUtil.close(con, pstmt);
-  } return image;
+  			} 
   }
 
 }
