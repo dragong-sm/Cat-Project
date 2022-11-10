@@ -10,4 +10,3 @@
 	            maxTotal="20" 
 	            maxIdle="10"
 	            maxWaitMillis="-1"/>
-</Context>
