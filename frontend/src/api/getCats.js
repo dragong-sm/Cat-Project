@@ -8,7 +8,7 @@ export const getData = () => {
 // 고양이정보
 export const axiosCatData = async () => {
   const response = await axios.get(
-    "https://raw.githubusercontent.com/domini04/mini_project/sungmin/CatDataTest"
+    "https://raw.githubusercontent.com/domini04/mini_project/sungmin/axiosTestData"
   );
 
   return response.data;
