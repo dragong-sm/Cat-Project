@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.*;
@@ -18,7 +19,7 @@ import service.CatService;
 import org.json.*;
 
 @WebServlet("/cat")
-public class CatController {
+public class CatController extends HttpServlet {
   public void doService(HttpServletRequest request, HttpServletResponse response) throws SQLException, NotExistException, IOException{
     System.out.println("요청 접수 완료");  
     request.setCharacterEncoding("UTF-8");
