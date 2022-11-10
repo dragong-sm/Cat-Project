@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function MorePictures({ photos }) {
+function MorePictures({ pictures }) {
   const Button = styled.button`
     background: #bccef8;
     font-size: 1em;
@@ -18,17 +18,25 @@ function MorePictures({ photos }) {
 
   return (
     <div>
-      <img src={photos[1]} width="150px" height="130px"></img>
-      &nbsp;&nbsp;
-      <img src={photos[2]} width="150px" height="130px"></img>
-      &nbsp;&nbsp;
-      <img src={photos[3]} width="150px" height="130px"></img>
-      <br></br>
-      <Button>
-        <a href={moreCatSrc} target="_blank">
-          Do you want More Pictures ?
-        </a>
-      </Button>
+      {pictures.map((picture) => (
+        <div key={pictures.id}>
+          <img src={[picture.photoURL[1]]} width="150px" height="130px"></img>
+          &nbsp;&nbsp;
+          <img src={[picture.photoURL[2]]} width="150px" height="130px"></img>
+          &nbsp;&nbsp;
+          <img src={[picture.photoURL[3]]} width="150px" height="130px"></img>
+          &nbsp;&nbsp;
+          <img src={[picture.photoURL[4]]} width="150px" height="130px"></img>
+          &nbsp;&nbsp;
+          <img src={[picture.photoURL[5]]} width="150px" height="130px"></img>
+          <br></br>
+          <Button>
+            <a href={moreCatSrc} target="_blank">
+              Do you want More Pictures ?
+            </a>
+          </Button>
+        </div>
+      ))}
     </div>
   );
 }

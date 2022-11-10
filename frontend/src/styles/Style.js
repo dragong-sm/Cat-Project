@@ -15,7 +15,7 @@ export const Article = styled.h1`
   font-size: 1.5em;
   border: 5px solid gray;
   border-style: none none double none;
-  //   background: yellow;
+  background: yellow;
 `;
 
 export const PreviousPage = styled.section`
@@ -23,14 +23,14 @@ export const PreviousPage = styled.section`
   margin: 10px;
   padding: 10px;
   text-align: right;
-  //   background: violet;
+  background: violet;
 `;
 
 export const Main = styled.section`
-  height: 55%;
+  height: 50%;
   padding: 10px;
   margin: 10px;
-  //   background: blue;
+  background: blue;
 `;
 
 export const More = styled.section`
@@ -68,5 +68,5 @@ export const MoreImage = styled.img`
   height: 80%;
   margin: 10px;
   padding: 10px;
-  background: blue;
+  // background: blue;
 `;
