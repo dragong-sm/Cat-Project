@@ -35,9 +35,16 @@ public class CatController {
       int catId = Integer.parseInt(request.getParameter("catId")); //String으로 request.getParameter("catId")를 했을 때, int로 형변환해줘야함
       CatDTO cat = CatService.getInstance().getCat(catId);
       //cat을 json으로 변환
-        //jackson 라이브러리 사용
-      ObjectMapper mapper = new ObjectMapper();
-      String json = mapper.writeValueAsString(cat);
+        //JsonObject를 사용해서 변환
+        JSONObject json = new JSONObject();
+        json.put("catId", cat.getId());
+        json.put("species", cat.getSpecies());
+        json.put("description", cat.getDescription());
+        json.put("temper", cat.getTemper());
+        json.put("hairType", cat.getHairType());
+        json.put("origin", cat.getOrigin());
+        json.put("size", cat.getSize());
+
       //json을 response에 담아서 보내기
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
