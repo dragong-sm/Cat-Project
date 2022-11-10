@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.dto.PictureDTO;
-//PictureDTO의 필드명 :  PIC_ID_PK, PIC_URL, PRIMARY_TB_ID_FK
+//PictureDTO의 필드명 :  
+  //PIC_ID_PK
+  //PIC_URL : 사진 url 주소 
+  //PRIMARY_TB_ID_FK : 외래키 (Cat테이블의 ID_PK)
 import util.DBUtil;
 
 public class PictureDAO {
