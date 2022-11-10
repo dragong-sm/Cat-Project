@@ -11,10 +11,12 @@ export function Home() {
   return (
     <div>
       <h1>Cat 검색</h1>
+      <br />
       <div>
         <Pictures />
       </div>
 
+      <br />
       <div>
         <Other onUpdateToggle={onUpdateToggle} />
       </div>

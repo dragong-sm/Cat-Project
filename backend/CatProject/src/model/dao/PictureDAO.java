@@ -2,8 +2,11 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import model.dto.CatDTO;
 import model.dto.PictureDTO;
 //PictureDTO의 필드명 :  
   //PIC_ID_PK
@@ -12,7 +15,8 @@ import model.dto.PictureDTO;
 import util.DBUtil;
 
 public class PictureDAO {
-  public static boolean insertPicture(PictureDTO pictureDTO) {
+  // 추가
+  public static PictureDTO insertPicture(PictureDTO pictureDTO) {
     Connection con = null;
     PreparedStatement pstmt = null;
 
@@ -26,14 +30,16 @@ public class PictureDAO {
       int result = pstmt.executeUpdate();
 
       if (result == 1) {
-        return true;
+        return pictureDTO;
       }
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       DBUtil.close(con, pstmt);
-    } return false;
+    } return null;
     }
+  
+  // 삭제
   public static boolean deletePicture(int id) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
@@ -55,20 +61,19 @@ public class PictureDAO {
     DBUtil.close(con, pstmt);
   } return false;
   }
-
-  public static boolean updatePicture(PictureDTO pictureDTO) throws SQLException {
+  
+  // 수정
+  public static boolean updatePicture(String picUrl, int primaryTbId, int picId) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
 
     try {
-      String idStr = String.valueOf(pictureDTO.getPicId());
-
       con = DBUtil.getConnection();
       String sql = "UPDATE PICTURES_TB SET PIC_URL = ?, PRIMARY_TB_ID_FK = ? WHERE PIC_ID_PK = ?";
       pstmt = con.prepareStatement(sql);
-      pstmt.setString(1, pictureDTO.getPicUrl());
-      pstmt.setInt(2, pictureDTO.getPrimaryTbId());
-      pstmt.setString(3, idStr);
+      pstmt.setString(1, picUrl);
+      pstmt.setInt(2, primaryTbId);
+      pstmt.setInt(3, picId);
       int result = pstmt.executeUpdate();
 
       if (result == 1) {
@@ -78,33 +83,38 @@ public class PictureDAO {
     DBUtil.close(con, pstmt);
   } return false;
   }
-
-  public static boolean searchPicture(int pk) throws SQLException {
-    Connection con = null;
-    PreparedStatement pstmt = null;
-
-    try {
-      String idStr = String.valueOf(pk);
-
-      con = DBUtil.getConnection();
-      String sql = "SELECT * FROM PICTURES_TB WHERE PIC_ID_PK = ?";
-      pstmt = con.prepareStatement(sql);
-      pstmt.setString(1, idStr);
-      int result = pstmt.executeUpdate();
-
-      if (result == 1) {
-        return true;
-      }
-  } finally {
-    DBUtil.close(con, pstmt);
-  } return false;
-  }
+  
+//  // 조회
+//  public static PictureDTO searchPicture(int pk) throws SQLException {
+//    Connection con = null;
+//    PreparedStatement pstmt = null;
+//    ResultSet rset = null;
+//    PictureDTO image = null;
+//    
+//    try {
+//      String idStr = String.valueOf(pk);
+//      
+//      con = DBUtil.getConnection();
+//      String sql = "SELECT * FROM PICTURES_TB WHERE PIC_ID_PK = ?";
+//      pstmt = con.prepareStatement(sql);
+//      pstmt.setString(1, idStr);
+//      rset = pstmt.executeQuery();
+//
+//      if (rset.next()) {
+//    	  image = new PictureDTO(rset.getInt(1), rset.getString(2), rset.getInt(3));
+//      }
+//  } finally {
+//    DBUtil.close(con, pstmt);
+//  } return image;
+//  }
 
   //FK인 PRIMARY_TB_ID_FK로 검색시 해당하는 사진들을 모두 검색해주는 메소드
-  public static boolean searchPictureByFK(int fk) throws SQLException {
+  public static ArrayList<PictureDTO> searchPictureByFK(int fk) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
-
+    ResultSet rset = null;
+    PictureDTO image = null;
+    
     try {
       String idStr = String.valueOf(fk);
 
@@ -112,14 +122,19 @@ public class PictureDAO {
       String sql = "SELECT * FROM PICTURES_TB WHERE PRIMARY_TB_ID_FK = ?";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, idStr);
-      int result = pstmt.executeUpdate();
-
-      if (result == 1) {
-        return true;
-      }
+      rset = pstmt.executeQuery();
+      ArrayList<PictureDTO> pictureList = new ArrayList<PictureDTO>();		  
+      while (rset.next()) {
+          PictureDTO picture = new PictureDTO();
+          picture.setPicId((rset.getInt("PIC_ID_PK")));
+          picture.setPicUrl(rset.getString("PIC_URL"));
+          picture.setPrimaryTbId(rset.getInt("PRIMARY_TB_ID_FK"));
+          pictureList.add(picture);
+        }
+        return pictureList;
   } finally {
     DBUtil.close(con, pstmt);
-  } return false;
+  			} 
   }
 
 }

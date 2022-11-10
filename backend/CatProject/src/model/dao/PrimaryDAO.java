@@ -2,7 +2,9 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.dto.CatDTO;
 import util.DBUtil;
@@ -86,7 +88,7 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
     } return false;
     }
 
-    public static boolean searchCat(int id) throws SQLException { //id로 검색
+    public static CatDTO searchCat(int id) throws SQLException { //id로 검색
       Connection con = null;
       PreparedStatement pstmt = null;
 
@@ -97,32 +99,51 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
         String sql = "SELECT * FROM PRIMARY_TB WHERE ID_PK = ?";
         pstmt = con.prepareStatement(sql);
         pstmt.setString(1, idStr);
-        int result = pstmt.executeUpdate();
+        ResultSet rs = pstmt.executeQuery();
 
-        if (result == 1) {
-          return true;
+        if (rs.next()) {
+          CatDTO cat = new CatDTO();
+          cat.setId(rs.getInt("ID_PK"));
+          cat.setSpecies(rs.getString("SPECIES"));
+          cat.setDescription(rs.getString("DESCRIPTION"));
+          cat.setTemper(rs.getString("TEMPER"));
+          cat.setHairType(rs.getString("HAIR_TYPE"));
+          cat.setOrigin(rs.getString("ORIGIN"));
+          cat.setSize(rs.getString("SIZE"));
+          return cat;
         }
-    } finally {
-      DBUtil.close(con, pstmt);
-    } return false;
+      } finally {
+        DBUtil.close(con, pstmt);
+      } return null;
     }
 
-    public static boolean searchAllCat() throws SQLException { //모든 고양이 검색
+    public static ArrayList<CatDTO> searchAllCats() throws SQLException { //모든 고양이 검색
       Connection con = null;
       PreparedStatement pstmt = null;
+      ResultSet rs = null;
 
       try {
         con = DBUtil.getConnection();
         String sql = "SELECT * FROM PRIMARY_TB";
         pstmt = con.prepareStatement(sql);
-        int result = pstmt.executeUpdate();
+        rs = pstmt.executeQuery(); 
 
-        if (result == 1) {
-          return true;
+        ArrayList<CatDTO> catList = new ArrayList<CatDTO>();
+        while (rs.next()) {
+          CatDTO cat = new CatDTO();
+          cat.setId(rs.getInt("ID_PK"));
+          cat.setSpecies(rs.getString("SPECIES"));
+          cat.setDescription(rs.getString("DESCRIPTION"));
+          cat.setTemper(rs.getString("TEMPER"));
+          cat.setHairType(rs.getString("HAIR_TYPE"));
+          cat.setOrigin(rs.getString("ORIGIN"));
+          cat.setSize(rs.getString("SIZE"));
+          catList.add(cat);
         }
-    } finally {
-      DBUtil.close(con, pstmt);
-    } return false;
+        return catList;
+      } finally {
+        DBUtil.close(con, pstmt, rs);
+      } 
     }
 
     public static boolean updateCat(CatDTO cat) throws SQLException {
@@ -148,5 +169,5 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
       } finally {
         DBUtil.close(con, pstmt);
       } return false;
-    }
   }
+}
