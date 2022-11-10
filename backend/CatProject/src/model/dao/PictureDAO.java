@@ -84,42 +84,42 @@ public class PictureDAO {
   } return false;
   }
   
-//  // 조회
-//  public static PictureDTO searchPicture(int pk) throws SQLException {
-//    Connection con = null;
-//    PreparedStatement pstmt = null;
-//    ResultSet rset = null;
-//    PictureDTO image = null;
-//    
-//    try {
-//      String idStr = String.valueOf(pk);
-//      
-//      con = DBUtil.getConnection();
-//      String sql = "SELECT * FROM PICTURES_TB WHERE PIC_ID_PK = ?";
-//      pstmt = con.prepareStatement(sql);
-//      pstmt.setString(1, idStr);
-//      rset = pstmt.executeQuery();
-//
-//      if (rset.next()) {
-//    	  image = new PictureDTO(rset.getInt(1), rset.getString(2), rset.getInt(3));
-//      }
-//  } finally {
-//    DBUtil.close(con, pstmt);
-//  } return image;
-//  }
-
-  //FK인 PRIMARY_TB_ID_FK로 검색시 해당하는 사진들을 모두 검색해주는 메소드
-  public static ArrayList<PictureDTO> searchPictureByFK(int fk) throws SQLException {
+  // 조회
+  public static PictureDTO searchPicture(int pk) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rset = null;
     PictureDTO image = null;
     
     try {
-      String idStr = String.valueOf(fk);
+      String idStr = String.valueOf(pk);
+      
+      con = DBUtil.getConnection();
+      String sql = "SELECT * FROM PICTURES_TB WHERE PIC_ID_PK = ?";
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, idStr);
+      rset = pstmt.executeQuery();
+
+      if (rset.next()) {
+    	  image = new PictureDTO(rset.getInt(1), rset.getString(2), rset.getInt(3));
+      }
+  } finally {
+    DBUtil.close(con, pstmt);
+  } return image;
+  }
+
+  //FK인 PRIMARY_TB_ID_FK로 검색시 해당하는 사진들을 모두 검색해주는 메소드
+  public static ArrayList<PictureDTO> searchPictureByFK(int id) throws SQLException {
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rset = null;
+    PictureDTO image = null;
+    
+    try {
+      String idStr = String.valueOf(id);
 
       con = DBUtil.getConnection();
-      String sql = "SELECT * FROM PICTURES_TB WHERE PRIMARY_TB_ID_FK = ?";
+      String sql = "SELECT PIC_URL FROM PICTURES_TB WHERE PRIMARY_TB_ID_FK = ?";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, idStr);
       rset = pstmt.executeQuery();
