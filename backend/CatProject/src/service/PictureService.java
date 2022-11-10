@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import exception.NotExistException;
 import model.dao.PictureDAO;
+import model.dao.PrimaryDAO;
+import model.dto.CatDTO;
 import model.dto.PictureDTO;
 
 public class PictureService {
@@ -16,9 +18,23 @@ public class PictureService {
 		return instance;
 	}
 	
-	// 조회
-	public ArrayList<PictureDTO> searchPictureByFK(int fk) throws SQLException, NotExistException {
-		return PictureDAO.searchPictureByFK(fk);
+	// insert/ update시 이미 존재하는 이미지인 경우
+	public void notExistPicture(int pk) throws SQLException, NotExistException {
+		PictureDTO picture = PictureDAO.searchPicture(pk);
+		if(picture != null) {
+			throw new NotExistException("이미 존재하는 이미지입니다.");
+		}
+	 }
+	
+	// 이미지 한장 조회
+	public PictureDTO getPicture(int id) throws SQLException, NotExistException {
+		notExistPicture(id); 
+		return PictureDAO.searchPicture(id);
+	}
+	
+	// 이미지 여러장 조회
+	public ArrayList<PictureDTO> getPictures(int id) throws SQLException, NotExistException {
+		return PictureDAO.searchPictureByFK(id);
 	}
 	
 	// 추가
