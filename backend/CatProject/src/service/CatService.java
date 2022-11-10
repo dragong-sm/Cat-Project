@@ -12,12 +12,12 @@ public class CatService {
 	public static CatService getInstance() {
 		return instance;
 	}
+
  // 에러처리를 위한 메소드
  public void notExistCat(int cid) {
 	CatDTO cat = PrimaryDAO.searchCat(cid);
 	if(cat == null) {
 		throw new NotExistException("존재하지 않는 고양이입니다.");
 	}
- }
-	
+ }	
 }
