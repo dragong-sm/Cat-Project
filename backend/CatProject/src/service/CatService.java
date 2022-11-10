@@ -15,6 +15,7 @@ public class CatService {
 	public static CatService getInstance() {
 		return instance;
 	}
+
  //I. 에러처리를 위한 메소드
 	// 1. 검색시 해당 고양이(품종)이 존재하지 않는 경우
  public void notExistCat(int cid) throws SQLException, NotExistException {
@@ -62,4 +63,4 @@ public class CatService {
 		notExistCat(id);
 		PrimaryDAO.deleteCat(id);
 	}
-}
+ }	
