@@ -1,6 +1,7 @@
 package model.dto;
 
 public class PictureDTO {
+
   //Pictures_TB 테이블의 properties:
     //PIC_ID_PK : primary key(int, auto_increment)
     //PIC_URL : String (VARCHAR(200))
@@ -49,5 +50,4 @@ public class PictureDTO {
       return "PictureDTO [picId=" + picId + ", picUrl=" + picUrl + ", primaryTbId=" + primaryTbId + "]";
     }
 }
-
 
