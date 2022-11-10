@@ -12,20 +12,11 @@ public class CatController {
 	public static CatController getInstance() {
 		return instance;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+  //I. READ
+  //1. 모든 고양이 정보 조회
+  public void getAllCats() {
+    catService.getAllCats();
+  }
+
 }
