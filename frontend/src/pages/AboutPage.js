@@ -39,22 +39,23 @@ function AboutPage() {
 
     const requestParams = { command: "GetCatInfo", catId: 1 };
 
-    const data = axios
-      .get("http://192.168.0.172/cat/cat", {
+    const responseData = axios
+      .get("http://localhost:8080/cat/picture", {
         params: requestParams,
       })
-      .then(function (response) {
-        console.log(response);
-      })
+      .then((response) => setCats(response.data))
       .catch(function (error) {
         console.log(error);
       });
 
-    data.then((data) => setCats(data));
+    //   console.log(responseData);
+    //   console.log(responseData.data);
+    // const data = responseData.data;
+    // data.then((data) => setCats(data));
   }, []);
 
   // catProfile : 고양이 객체
-  const catProfile = cats[catId];
+  // const catProfile = cats[catId];
   // console.log(catProfile);
 
   return (
@@ -62,7 +63,7 @@ function AboutPage() {
       {/* {catProfile.id} */}
       <Wrapper>
         <Article>
-          <b> " {catProfile.species} " </b>{" "}
+          <b> " {cats.species} " </b>{" "}
         </Article>
         <GoHomePage>
           <GoHomeBtn />
@@ -70,13 +71,11 @@ function AboutPage() {
         <Main>
           <MainImage src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200309_166%2F1583725050886CTWAw_JPEG%2F19860647745281435_-647047757.jpeg" />
           <Contents>
-            <CatContents catProfile={catProfile} />
+            <CatContents catProfile={cats} />
           </Contents>
         </Main>
-        <More>
-          <MorePictures catProfile={catProfile} />
-        </More>
-        <MoreBtn catProfile={catProfile} />
+        <More>{/* <MorePictures catProfile={catProfile} /> */}</More>
+        {/* <MoreBtn catProfile={catProfile} /> */}
       </Wrapper>
     </div>
   );
