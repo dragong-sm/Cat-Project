@@ -3,12 +3,7 @@ import styled from "styled-components";
 import { More, MoreBtn, MoreImage } from "../styles/Style";
 
 function MorePictures({ cat }) {
-  // moreCatSrc : naver의 해당 고양이 이미지 검색시 보이는 화면 url
-  // - db에 추가 or URL패턴 !
-  // console.log(cat.species);
-
-  // console.log(catSpecies);
-  // console.log(searchURL + catSpecies);
+  // console.log(cat.id);
 
   return (
     <div>
