@@ -15,14 +15,14 @@ function App() {
     data.then((data) => setCats(data));
   }, []);
 
-  const [ id, species ] = cats;
+  // const [ id, species ] = cats;
 
   // 페이지구성
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home cats={cats}/>} />
-        <Route path="about/*" element={<AboutPage cats={cats} />} />
+        <Route path="about/" element={<AboutPage cats={cats} />} />
       </Routes>
     </div>
   );
