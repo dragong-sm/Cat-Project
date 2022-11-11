@@ -5,31 +5,18 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { axiosCatPictures, axiosCatData } from "./api/getCats";
 import AboutPage from "./pages/AboutPage";
+import { ErrorPage } from "./pages/ErrorPage";
+import { ReactPropTypes } from "react";
 
 function App() {
-  // 데이터 db로 불러오기 !
-  const [cats, setCats] = useState([]);
-  useEffect(() => {
-    // axios 사용
-    const data = axiosCatData();
-    data.then((data) => setCats(data));
-  }, []);
-
-  // const [ id, species ] = cats;
-  // 데이터 id별로 비구조화 할당
-  
   // 페이지구성
   return (
     <div className="App">
       <Routes>
-        <Route 
-          path="/" 
-          element={<Home
-                    cats={cats}/>} />
-        <Route 
-          path="about/" 
-          element={<AboutPage
-                    cats={cats} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about/:catId" element={<AboutPage />} />
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+        {/* <Route path="/about/:id" component={<AboutPage />} /> */}
       </Routes>
     </div>
   );
