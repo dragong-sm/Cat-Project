@@ -1,28 +1,25 @@
 import React from "react";
 
 function CatContents({ cats }) {
-  // console.log(catProfile);
+  // console.log(cats);
+
   return (
     <div>
-      <li>소개</li>
-      &nbsp;&nbsp;
+      <h3> 📌 소개</h3>
+      &nbsp;&nbsp;▪&nbsp;&nbsp;
       {cats.description}
-      <hr></hr>
-      <li>출신</li>
-      &nbsp;&nbsp;
+      <h3> 📌 출신</h3>
+      &nbsp;&nbsp;▪&nbsp;&nbsp;
       {cats.origin}
-      <hr></hr>
-      <li>성격</li>
-      &nbsp;&nbsp;
-      {cats.personality}
-      <hr></hr>
-      <li>체중</li>
-      &nbsp;&nbsp;
-      {cats.weight}
-      <hr></hr>
-      <li>털</li>
-      &nbsp;&nbsp;
-      {cats.hair}
+      <h3> 📌 성격</h3>
+      &nbsp;&nbsp;▪&nbsp;&nbsp;
+      {cats.temper}
+      <h3> 📌 체중</h3>
+      &nbsp;&nbsp;▪&nbsp;&nbsp;
+      {cats.size}
+      <h3>📌 털</h3>
+      &nbsp;&nbsp;▪&nbsp;&nbsp;
+      {cats.hairType}
     </div>
   );
 }
