@@ -1,91 +1,96 @@
 import React from "react";
 import styled from "styled-components";
 
+// 전체화면
 export const Wrapper = styled.section`
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 0 auto;
   height: 100%;
-  width: 100%;
-  padding: 0.5px;
+  box-sizing: border-box;
   background: #dff6ff;
-  display: flex;
-  flex-wrap: wrap;
+  padding: 10px;
 `;
 
-export const Article = styled.h1`
-  height: 4%;
-  padding: 10px;
-  margin: 10px;
-  font-size: 1.5em;
-  border: 5px solid gray;
+//  제목
+export const Article = styled.h2`
+  display: flex;
+  flex: 0 1 auto;
+  padding: 10px; // 요소 내부 너비
+  justify-content: center; // 수평 위치 설정
+  align-items: center; // 수직 위치 설정
   border-style: none none double none;
-  // background: yellow;
+  // background-color: DodgerBlue;
+  line-height: 40px;
+  // color: gray; // 글씨색
 `;
 
+// homepage 버튼영역
 export const GoHomePage = styled.section`
-  height: 2%;
-  margin: 10px;
-  padding: 10px;
-  text-align: right;
-  // background: violet;
-`;
-
-export const Main = styled.section`
-  height: 40%;
-  padding: 10px;
-  margin: 10px;
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  jutify-content: space-between;
+  flex: 0 1 auto;
+  justify-content: right;
   align-items: center;
+  margin-left: auto;
   // background: violet;
 `;
 
-export const More = styled.section`
-  height: 20%;
-  padding: 10px;
-  margin: 10px;
+//  main 영역 (고양이 사진 +  contents )
+export const Main = styled.section`
+  height: 500px;
   display: flex;
-  jutify-content: center;
-  overflow: auto;
-  white-space: wrap;
-  background: violet;
+  flex: 0 1 auto;
+  padding: 30px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  // background: blue;
 `;
 
+// 사진 더보기 영역
+export const More = styled.section`
+  display: flex;
+  flex: 0 1 auto;
+  height: 30%;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  background: violet;
+  margin-top: auto;
+`;
+
+// main 이미지
 export const MainImage = styled.img`
-  height: 90%;
-  width: 60%;
-  margin-left: 5%;
+  display: flex;
+  height: 95%;
+  width: 40%;
   float: left;
   border: 10px solid skyblue;
   border-style: inset;
   border-radius: 30px;
 `;
 
+// main contents
 export const Contents = styled.div`
-  height: 90%;
-  padding: 10px;
-  margin-left: 5%;
-  margin-right: 5%;
-  float: right;
-  font-size: 15px;
-  text-align: left;
+  display: flex;
+  height: 95%;
+  width: 40%;
+  // background: yellow;
+  text-overflow: ellipsis;
   overflow: auto;
-  // text-overflow: ellipsis;
+  text-align: left;
 `;
 
-export const MoreImage = styled.img`
-  width: 25%;
-  height: 80%;
-  margin: 10px;
-  padding: 10px;
-`;
+// more image
+export const MoreImage = styled.img``;
 
+// 버튼
 export const Button = styled.button`
-  background: #bccef8;
+  background: none;
   font-size: 13px;
   margin: 10px;
   padding: 0.5em 1em;
   border: 2px solid;
   border-radius: 3px;
-  border-color: #bccef8;
+  border-color: #dff6ff;
 `;
