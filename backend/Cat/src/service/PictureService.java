@@ -31,7 +31,7 @@ public class PictureService {
 	}
 	
 	// 이미지 여러장 조회
-	public ArrayList<PictureDTO> getPictures(int id) throws SQLException, NotExistException {
+	public ArrayList<String> getPictures(int id) throws SQLException, NotExistException {
 		return PictureDAO.searchPictureByFK(id);
 	}
 	
