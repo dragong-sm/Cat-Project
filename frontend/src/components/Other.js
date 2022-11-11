@@ -13,7 +13,7 @@ function Other({ cats }) {
 
   const Catnames = styled.div`
     width: 150px;
-    height: 30px;
+    height: 300px;
     text-align: left;
     list-style-type: none;
     margin-left: 20px;
@@ -46,56 +46,46 @@ function Other({ cats }) {
       
         {/* 고양이 품종별 링크 리스트 */}
         {isCheck && 
-            cats.map((cat) => (
             <Catboard>
               <Catnames>
-              {/* <Routes> */}
-                {/* <Route path={cat.id} element={<Catname cat={cat}/>}/> */}
-                {/* Catname 모듈: DB 정보 불러와서 종 이름 나열하는 용도 */}
-                <Catname cat={cat}/>
-              {/* </Routes> */}
-              </Catnames>
-                
-                {/* <div>
+                <div>
                   <li>
-                    <Link to="about">랙돌</Link>
+                    <Link to="about/6">랙돌</Link>
                   </li>
                   <li>
-                    <Link to="about">스코티시폴드</Link>
+                    <Link to="about/7">스코티시폴드</Link>
                   </li>
                   <li>
-                    <Link to="about">샴</Link>
+                    <Link to="about/8">샴</Link>
                   </li>
                   <li>
-                    <Link to="about">페르시안</Link>
+                    <Link to="about/9">페르시안</Link>
                   </li>
                   <li>
-                    <Link to="about">아비시니안</Link>
+                    <Link to="about/10">아비시니안</Link>
                   </li>
                   <li>
-                    <Link to="about">아메리칸쇼트헤어</Link>
+                    <Link to="about/11">아메리칸쇼트헤어</Link>
                   </li>
                   <li>
-                    <Link to="about">브리티시쇼트헤어</Link>
+                    <Link to="about/12">브리티시쇼트헤어</Link>
                   </li>
                   <li>
-                    <Link to="about">벵갈</Link>
+                    <Link to="about/13">벵갈</Link>
                   </li>
                   <li>
-                    <Link to="about">터키시앙고라</Link>
+                    <Link to="about/14">터키시앙고라</Link>
                   </li>
                   <li>
-                    <Link to="about">귀여운</Link>
+                    <Link to="about/15">귀여운</Link>
                   </li>
                   <li>
-                    <Link to="about">고양이</Link>
+                    <Link to="about/16">고양이</Link>
                   </li>
                 </div>
-              </Catnames> */}
-            </Catboard>)
-            )
-}</div>
-  )
+              </Catnames>
+            </Catboard>}
+            </div>)
 }
 
 
