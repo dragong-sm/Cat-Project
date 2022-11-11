@@ -22,8 +22,8 @@ public class PictureController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String command = request.getParameter("command"); // ìš”ì²­ ì¢…ë¥˜ íŒë³„
-	    int id = Integer.parseInt(request.getParameter("id"));// ê³ ì–‘ì´ id
+		String command = request.getParameter("command"); // ¿äÃ» Á¾·ù ÆÇº°
+	    int id = Integer.parseInt(request.getParameter("id"));// °í¾çÀÌ id
 	    
 	    PictureService service = PictureService.getInstance();
 	    

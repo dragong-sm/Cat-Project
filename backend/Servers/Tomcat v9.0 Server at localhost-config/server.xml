@@ -140,9 +140,7 @@
       </Realm>
 
       <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
-      <Host appBase="webapps" autoDeploy="true" name="test.cat.com" unpackWARs="true">
 
-      </Host>
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
         <!--
@@ -154,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="CatProject" path="/cat" reloadable="true" source="org.eclipse.jst.jee.server:CatProject"/><Context docBase="ProjectCat" path="/projectcat" reloadable="true" source="org.eclipse.jst.jee.server:ProjectCat"/></Host>
+      <Context docBase="Cat" path="/catproject" reloadable="true" source="org.eclipse.jst.jee.server:Cat"/><Context docBase="CatProject" path="/cat" reloadable="true" source="org.eclipse.jst.jee.server:CatProject"/></Host>
     </Engine>
   </Service>
 </Server>
