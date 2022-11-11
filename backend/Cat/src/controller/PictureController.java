@@ -10,46 +10,75 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import exception.NotExistException;
 import model.dto.PictureDTO;
 import service.PictureService;
 
-import org.json.JSONObject;
-import org.json.JSONArray;
-
 @WebServlet("/picture")
 public class PictureController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("서버 접속 잘됨");
+		request.setCharacterEncoding("utf-8");
 		
-		String command = request.getParameter("command"); // ��û ���� �Ǻ�
-	    int id = Integer.parseInt(request.getParameter("id"));// ������ id
-	    
-	    PictureService service = PictureService.getInstance();
-	    
+		String command = request.getParameter("command"); // 요청 종류 판별
+		PictureService service = PictureService.getInstance();
+		
+		System.out.println("catId : " + request.getParameter("catId"));
+		System.out.println("command : " + command);
+		
 	    if(command.equals("getPicture")) {
-	    	try {
-				ArrayList<PictureDTO> pictures = service.getPictures(id);
+				try {
+					getPicture(request, response, service);
+				} catch (ServletException | IOException | SQLException | NotExistException e) {
+					e.printStackTrace();
+				}
+			
+	    }else if(command.equals("getPictures")) {
+	    	getPictures(request, response, service);
+	    } 
+	}
+	
+	public void getPicture(HttpServletRequest request, HttpServletResponse response, PictureService service) 
+			throws ServletException, IOException, SQLException, NotExistException{
 				
+			try {
+				int id = Integer.parseInt(request.getParameter("catId"));// 사진 id	//1 
+				String picture = null;
+				picture = service.getPicture(id); // 
+				System.out.println(picture);
 				JSONArray jArray = new JSONArray();
 				
-			    for (int i = 0; i < pictures.size(); i++) {
-			    	JSONObject obj = new JSONObject();
-					obj.put("PIC_URL", pictures.get(i).getPicUrl());
-					jArray.put(obj);
-				}
-			    
-			    response.setContentType("application/json");
-			    response.setCharacterEncoding("UTF-8");
+			   
+			    response.setContentType("application/json; charset=UTF-8");
+			   
 			    response.getWriter().write(jArray.toString());	
 				
 			} catch (SQLException | NotExistException e) {
 				e.printStackTrace();
-			}
-	    }     
+			}   
+				System.out.println("사진 가져오기 성공");
+	}   
+	
+	public void getPictures(HttpServletRequest request, HttpServletResponse response, PictureService service) throws ServletException, IOException{
+	    
+	    	try {
+	    		int id = Integer.parseInt(request.getParameter("catId"));// 사진 id	//1 
+				ArrayList<String> pictures = service.getPictures(id); // 
+				
+			    System.out.println("이미지 URL : " + pictures);
+			    response.setContentType("application/json; charset=UTF-8");
+			   
+			    response.getWriter().write(pictures.toString());	
+				
+			} catch (SQLException | NotExistException e) {
+				e.printStackTrace();
+			}   
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+		
 }

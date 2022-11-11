@@ -81,31 +81,31 @@ public class PictureDAO {
   }
   
   // 조회
-  public static PictureDTO searchPicture(int pk) throws SQLException {
+  public static String searchPicture(int pk) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rset = null;
-    PictureDTO image = null;
+    String pictureUrl = null;
     
     try {
       String idStr = String.valueOf(pk);
       
       con = DBUtil.getConnection();
-      String sql = "SELECT * FROM PICTURES_TB WHERE PIC_ID_PK = ?";
+      String sql = "SELECT PIC_URL FROM PICTURES_TB WHERE PIC_ID_PK = ?";
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, idStr);
       rset = pstmt.executeQuery();
 
       if (rset.next()) {
-    	  image = new PictureDTO(rset.getInt(1), rset.getString(2), rset.getInt(3));
+    	  pictureUrl = rset.getString("PIC_URL");
       }
   } finally {
     DBUtil.close(con, pstmt);
-  } return image;
+  } return pictureUrl;
   }
 
   //FK인 PRIMARY_TB_ID_FK로 검색시 해당하는 사진들을 모두 검색해주는 메소드
-  public static ArrayList<PictureDTO> searchPictureByFK(int id) throws SQLException {
+  public static ArrayList<String> searchPictureByFK(int id) throws SQLException {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rset = null;
@@ -118,15 +118,12 @@ public class PictureDAO {
       pstmt = con.prepareStatement(sql);
       pstmt.setString(1, idStr);
       rset = pstmt.executeQuery();
-      ArrayList<PictureDTO> pictureList = new ArrayList<PictureDTO>();		  
+      ArrayList<String> pictureUrlList = new ArrayList<String>();		  
       while (rset.next()) {
-          PictureDTO picture = new PictureDTO();
-          picture.setPicId((rset.getInt("PIC_ID_PK")));
-          picture.setPicUrl(rset.getString("PIC_URL"));
-          picture.setPrimaryTbId(rset.getInt("PRIMARY_TB_ID_FK"));
-          pictureList.add(picture);
+          String url = rset.getString("PIC_URL");
+          pictureUrlList.add(url);
         }
-        return pictureList;
+        return pictureUrlList;
   } finally {
     DBUtil.close(con, pstmt);
   			} 
