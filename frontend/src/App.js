@@ -15,12 +15,21 @@ function App() {
     data.then((data) => setCats(data));
   }, []);
 
+  // const [ id, species ] = cats;
+  // 데이터 id별로 비구조화 할당
+  
   // 페이지구성
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<AboutPage cats={cats} />} />
+        <Route 
+          path="/" 
+          element={<Home
+                    cats={cats}/>} />
+        <Route 
+          path="about/" 
+          element={<AboutPage
+                    cats={cats} />} />
       </Routes>
     </div>
   );
