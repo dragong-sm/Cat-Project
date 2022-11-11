@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { More, MoreBtn, MoreImage } from "../styles/Style";
 
-function MorePictures({ catProfile }) {
+function MorePictures({ cats }) {
   // console.log(cat.id);
 
   return (
