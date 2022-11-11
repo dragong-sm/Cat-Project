@@ -12,20 +12,20 @@ export const Wrapper = styled.section`
 
 export const Article = styled.h1`
   height: 4%;
+  width: 100%;
   padding: 10px;
   margin: 10px;
-  font-size: 1.5em;
-  border: 5px solid gray;
   border-style: none none double none;
-  // background: yellow;
+  background: yellow;
 `;
 
 export const GoHomePage = styled.section`
   height: 2%;
+  width: 100%;
   margin: 10px;
   padding: 10px;
   text-align: right;
-  // background: violet;
+  background: violet;
 `;
 
 export const Main = styled.section`
@@ -37,11 +37,12 @@ export const Main = styled.section`
   flex-direction: row;
   jutify-content: space-between;
   align-items: center;
-  // background: violet;
+  background: violet;
 `;
 
 export const More = styled.section`
   height: 20%;
+  width: 100%;
   padding: 10px;
   margin: 10px;
   display: flex;

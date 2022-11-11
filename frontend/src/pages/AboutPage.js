@@ -36,47 +36,38 @@ function AboutPage() {
   useEffect(() => {
     // axios 사용
     // const data = axiosCatData();
+    // data.then((data) => setCats(data));
 
     const requestParams = { command: "GetCatInfo", catId: 1 };
 
-    const data = axios
-      .get("http://192.168.0.172/cat/cat", {
+    // promise 객체는 내부에서 풀어주어야 함
+    const responseData = axios
+      .get("http://localhost:8080/cat/cat", {
         params: requestParams,
       })
-      .then(function (response) {
-        console.log(response);
-      })
+      .then((response) => setCats(response.data))
       .catch(function (error) {
         console.log(error);
       });
-
-    data.then((data) => setCats(data));
   }, []);
-
-  // catProfile : 고양이 객체
-  const catProfile = cats[catId];
-  // console.log(catProfile);
 
   return (
     <div>
-      {/* {catProfile.id} */}
       <Wrapper>
-        <Article>
-          <b> " {catProfile.species} " </b>{" "}
-        </Article>
+        <Article>" {cats.species} "</Article>
         <GoHomePage>
           <GoHomeBtn />
         </GoHomePage>
         <Main>
           <MainImage src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200309_166%2F1583725050886CTWAw_JPEG%2F19860647745281435_-647047757.jpeg" />
           <Contents>
-            <CatContents catProfile={catProfile} />
+            <CatContents cats={cats} />
           </Contents>
         </Main>
         <More>
-          <MorePictures catProfile={catProfile} />
+          <MorePictures cats={cats} />
         </More>
-        <MoreBtn catProfile={catProfile} />
+        <MoreBtn cats={cats} />
       </Wrapper>
     </div>
   );
