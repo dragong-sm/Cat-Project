@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import exception.NotExistException;
 import model.dto.CatDTO;
 import service.CatService;
+//import template.RequestTemp;
 
 @WebServlet("/cat")
 public class CatController extends HttpServlet {
@@ -32,27 +34,29 @@ public class CatController extends HttpServlet {
 					System.out.println("요청URI: "+request.getRequestURI());
 					System.out.println("요청URL: "+request.getRequestURL());
 					System.out.println("요청명령 : "+request.getQueryString());
+					
+				
+		// System.out.println(request.getParameter("data"));			
+		//Query String이 command=GetCatInfo&catId=1 같은 형태로 넘어옴
+		System.out.println("command : " + request.getParameter("command"));
+		System.out.println("catId : " + request.getParameter("catId"));
 
-			//Object Mapper를 사용하여 request에 담긴 데이터를 추출
-			// 예시
-					// ver2
-//		ObjectMapper mapper = new ObjectMapper();
-//		User user = mapper.readValue(request.getInputStream(), User.class);
-//		System.out.println(user);
+
+		String command = request.getParameter("command");
+//		Integer catId = Integer.parseInt(request.getParameter("catId"));
 		
-//		System.out.println("async");
-//		response.setContentType("text/html; charset=UTF-8");
-
-		//전달되는 데이터 
-		  //         command: 'getCatInfo',
-  //         catId: 1
-  //       }
-//
-//			ObjectMapper mapper = new ObjectMapper();
-//			JSONObject json = mapper.readValue(request.getInputStream(), JSONObject.class);
-//			System.out.println(json);
-//			
-//			
+		//command가 "GetCatInfo"이면 catId에 해당하는 고양이 정보를 얻어와서 response에 담아서 보내기 
+		if ("GetCatInfo".equals(command)) {
+		try {
+			CatDTO cat = null;
+			cat = CatService.getInstance().getCat(1);
+			System.out.println(cat); //테스트용
+			response.setContentType("application/json; charset=UTF-8");
+			response.getWriter().write(new ObjectMapper().writeValueAsString(cat));
+		} catch (NotExistException | SQLException e) {
+			e.printStackTrace();
+		}
 
 	}	
+}
 }

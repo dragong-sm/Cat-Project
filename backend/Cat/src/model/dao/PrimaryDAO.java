@@ -142,7 +142,7 @@ public class PrimaryDAO { //DAO : DB와 연동해 데이터를 입력, 수정, �
         }
         return catList;
       } finally {
-        DBUtil.close2(con, pstmt, rs);
+        DBUtil.close(con, pstmt, rs);
       } 
     }
 
