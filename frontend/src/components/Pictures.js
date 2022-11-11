@@ -29,7 +29,7 @@ function Pictures() {
     <Catbox>
       {/* 노르웨이숲고양이 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/0">
           <img src={cat1} width="150px" height="130px"></img>
           <br></br>노르웨이숲고양이
         </Link>
@@ -37,7 +37,7 @@ function Pictures() {
 
       {/* 스핑크스 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/1">
           <img src={cat2} width="150px" height="130px"></img>
           <br></br>스핑크스
         </Link>
