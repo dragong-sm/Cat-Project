@@ -1,29 +1,36 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Home } from "./pages/Home";
-import { About } from "./pages/About";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { getData, axiosData } from "./api/getCats";
-import data from "./db/mock.json";
+import { axiosCatPictures, axiosCatData } from "./api/getCats";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
-  // 데이터는 db로 불러오기 !
+  // 데이터 db로 불러오기 !
   const [cats, setCats] = useState([]);
   useEffect(() => {
     // axios 사용
-    const data = axiosData();
+    const data = axiosCatData();
     data.then((data) => setCats(data));
   }, []);
 
+  // const [ id, species ] = cats;
+  // 데이터 id별로 비구조화 할당
+  
+  // 페이지구성
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About cats={cats} />} />
+        <Route 
+          path="/" 
+          element={<Home
+                    cats={cats}/>} />
+        <Route 
+          path="about/" 
+          element={<AboutPage
+                    cats={cats} />} />
       </Routes>
-      {/* <Home /> */}
-      {/* <About cats={cats} />  */}
     </div>
   );
 }

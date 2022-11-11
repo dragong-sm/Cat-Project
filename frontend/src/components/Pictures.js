@@ -29,7 +29,7 @@ function Pictures() {
     <Catbox>
       {/* 노르웨이숲고양이 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/1">
           <img src={cat1} width="150px" height="130px"></img>
           <br></br>노르웨이숲고양이
         </Link>
@@ -37,7 +37,7 @@ function Pictures() {
 
       {/* 스핑크스 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/2">
           <img src={cat2} width="150px" height="130px"></img>
           <br></br>스핑크스
         </Link>
@@ -45,7 +45,7 @@ function Pictures() {
 
       {/* 러시안블루 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/3">
           <img src={cat3} width="150px" height="130px"></img>
           <br></br>러시안블루
         </Link>
@@ -53,7 +53,7 @@ function Pictures() {
 
       {/* 코리안쇼트헤어 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/4">
           <img src={cat4} width="150px" height="130px"></img>
           <br></br>코리안쇼트헤어
         </Link>
@@ -61,7 +61,7 @@ function Pictures() {
 
       {/* 먼치킨 */}
       <Cats>
-        <Link to="about">
+        <Link to="about/5">
           <img src={cat5} width="150px" height="130px"></img>
           <br></br>먼치킨
         </Link>

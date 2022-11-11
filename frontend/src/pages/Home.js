@@ -13,12 +13,12 @@ export function Home({cats}) {
       <h1>Cat 검색</h1>
       <br />
       <div>
-        <Pictures />
+        <Pictures cats={cats}/>
       </div>
 
       <br />
       <div>
-        <Other onUpdateToggle={onUpdateToggle} />
+        <Other cats={cats}/>
       </div>
     </div>
   );

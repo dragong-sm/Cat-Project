@@ -5,10 +5,19 @@ export const getData = () => {
   return data;
 };
 
-// axios
-export const axiosData = async () => {
+// 고양이정보
+export const axiosCatData = async () => {
   const response = await axios.get(
     "https://raw.githubusercontent.com/domini04/mini_project/sungmin/axiosTestData"
+  );
+
+  return response.data;
+};
+
+// 고양이사진
+export const axiosCatPictures = async () => {
+  const response = await axios.get(
+    "https://raw.githubusercontent.com/domini04/mini_project/sungmin/PicturesDataTest"
   );
 
   return response.data;

@@ -1,7 +1,6 @@
 import React from "react";
 
 function CatContents({ cat }) {
-  console.log(cat);
   return (
     <div>
       <li>소개</li>
