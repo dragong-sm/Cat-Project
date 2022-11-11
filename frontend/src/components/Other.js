@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, Outlet, useParams, useSearchParams } from "react-router-dom";
+import Catname from "./Catname";
 
-function Other({ onUpdateToggle }) {
+function Other({ cats }) {
   const Catboard = styled.div`
     width: 450px;
     height: 500px;
@@ -23,7 +24,13 @@ function Other({ onUpdateToggle }) {
     align-content: center;
   `;
 
+  // 토글버튼
   const [isCheck, setCheck] = useState(false);
+
+  // 데이터 가져와 비구조화 할당하기
+  // data, cats, setcats 모두 App.js에 있음.  
+  const [ id, species ] = cats;
+  
 
   return (
     <div>
@@ -36,10 +43,12 @@ function Other({ onUpdateToggle }) {
       </button>
       <h3>다른 종류 검색하기</h3>
 
-      {/* 고양이 품종 링크 리스트 넣기 */}
+      {/* 고양이 품종별 링크 리스트 */}
       {isCheck && (
         <Catboard>
           <Catnames>
+            {/* Catname 모듈: DB 정보 불러와서 종 이름 나열하는 용도 */}
+            {/* <Catname /> */}
             <div>
               <li>
                 <Link to="about">랙돌</Link>

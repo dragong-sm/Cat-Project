@@ -18,7 +18,7 @@ export function Home({cats}) {
 
       <br />
       <div>
-        <Other onUpdateToggle={onUpdateToggle} />
+        <Other cats={cats} />
       </div>
     </div>
   );
