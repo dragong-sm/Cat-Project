@@ -15,8 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about/:catId" element={<AboutPage />} />
-        {/* <Route path="*" element={<ErrorPage />} /> */}
-        {/* <Route path="/about/:id" component={<AboutPage />} /> */}
+        
+        <Route path="/about/:id" component={<AboutPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

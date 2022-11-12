@@ -34,7 +34,13 @@ public class CatController extends HttpServlet {
 					System.out.println("요청URI: "+request.getRequestURI());
 					System.out.println("요청URL: "+request.getRequestURL());
 					System.out.println("요청명령 : "+request.getQueryString());
-					
+		
+		//CORS 문제 해결 
+			//1. testing : print out the request origin header
+			System.out.println("요청 origin : "+request.getHeader("origin")); //http://127.0.0.1:5500 (html live server)-> 허용해주면 됨.
+				//리액트 서버도 포트번호 확인하고 허용해주기
+			//2. set the response header
+			response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
 				
 		// System.out.println(request.getParameter("data"));			
 		//Query String이 command=GetCatInfo&catId=1 같은 형태로 넘어옴
