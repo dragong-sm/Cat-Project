@@ -29,29 +29,28 @@ public class PictureController extends HttpServlet {
 		System.out.println("catId : " + request.getParameter("catId"));
 		System.out.println("command : " + command);
 		
-	    if(command.equals("getPicture")) {
+	    if("getPicture".equals(command)) {
 				try {
 					getPicture(request, response, service);
 				} catch (ServletException | IOException | SQLException | NotExistException e) {
 					e.printStackTrace();
 				}
 			
-	    }else if(command.equals("getPictures")) {
+	    }else if("getPictures".equals(command)) {
 	    	getPictures(request, response, service);
 	    } 
 	}
 	
 	public void getPicture(HttpServletRequest request, HttpServletResponse response, PictureService service) 
 			throws ServletException, IOException, SQLException, NotExistException{
-				
+			
+			String picture = null;	
 			try {
-				int id = Integer.parseInt(request.getParameter("catId"));// 사진 id	//1 
-				String picture = null;
+				int id = Integer.parseInt(request.getParameter("catId"));// 사진 id	 
+				
 				picture = service.getPicture(id); // 
 				System.out.println(picture);
 				
-				
-			   
 			    response.setContentType("application/json; charset=UTF-8");
 			   
 			    response.getWriter().write(new ObjectMapper().writeValueAsString(picture));	
@@ -65,7 +64,7 @@ public class PictureController extends HttpServlet {
 	public void getPictures(HttpServletRequest request, HttpServletResponse response, PictureService service) throws ServletException, IOException{
 	    
 	    	try {
-	    		int id = Integer.parseInt(request.getParameter("catId"));// 사진 id	//1 
+	    		int id = Integer.parseInt(request.getParameter("catId")); // 사진 id	 
 				ArrayList<String> pictures = service.getPictures(id); // 
 				
 			    System.out.println("이미지 URL : " + pictures);

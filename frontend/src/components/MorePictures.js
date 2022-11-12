@@ -1,32 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { More, MoreBtn, MoreImage } from "../styles/Style";
+import { More, MoreBtn, MoreImage, MoreSection } from "../styles/Style";
 
-function MorePictures({ catProfile }) {
+function MorePictures({ catUrl, species }) {
   // console.log(cat.id);
 
   return (
     <div>
-      {/* {pictures.map((picture) => ( */}
-      {/* <div key={pictures.id}> */}
-
-      <div>
-        <img src="" width="150px" height="130px"></img>
-      </div>
-      <div>
-        <img src="" width="150px" height="130px"></img>
-      </div>
-      <div>
-        <img src="" wwidth="150px" height="130px"></img>
-      </div>
-      <div>
-        <img src="" width="150px" height="130px"></img>
-      </div>
-      <div>
-        <img src="" width="150px" height="130px"></img>
-      </div>
-      {/* </div> */}
-      {/* ))} */}
+      <MoreSection>
+        <MoreImage src={catUrl[1]} alt={species}></MoreImage>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <MoreImage src={catUrl[2]} alt={species}></MoreImage>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <MoreImage src={catUrl[3]} alt={species}></MoreImage>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <MoreImage src={catUrl[4]} alt={species}></MoreImage>
+      </MoreSection>
     </div>
   );
 }
