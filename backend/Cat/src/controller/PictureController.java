@@ -10,13 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import exception.NotExistException;
-import model.dto.PictureDTO;
+
 import service.PictureService;
 
 @WebServlet("/picture")
@@ -52,13 +49,13 @@ public class PictureController extends HttpServlet {
 				String picture = null;
 				picture = service.getPicture(id); // 
 				System.out.println(picture);
-				JSONArray jArray = new JSONArray();
+				
 				
 			   
 			    response.setContentType("application/json; charset=UTF-8");
 			   
-			    response.getWriter().write(jArray.toString());	
-				
+			    response.getWriter().write(new ObjectMapper().writeValueAsString(picture));	
+			    
 			} catch (SQLException | NotExistException e) {
 				e.printStackTrace();
 			}   
@@ -74,7 +71,7 @@ public class PictureController extends HttpServlet {
 			    System.out.println("이미지 URL : " + pictures);
 			    response.setContentType("application/json; charset=UTF-8");
 			   
-			    response.getWriter().write(pictures.toString());	
+			    response.getWriter().write(new ObjectMapper().writeValueAsString(pictures));	
 				
 			} catch (SQLException | NotExistException e) {
 				e.printStackTrace();
