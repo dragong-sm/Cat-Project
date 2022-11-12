@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -9,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exception.NotExistException;
@@ -35,7 +32,7 @@ public class CatController extends HttpServlet {
 					System.out.println("요청URL: "+request.getRequestURL());
 					System.out.println("요청명령 : "+request.getQueryString());
 		
-		//CORS 문제 해결 
+			//CORS 문제 해결 
 			//1. testing : print out the request origin header
 			System.out.println("요청 origin : "+request.getHeader("origin")); //http://127.0.0.1:5500 (html live server)-> 허용해주면 됨.
 				//리액트 서버도 포트번호 확인하고 허용해주기
@@ -53,8 +50,9 @@ public class CatController extends HttpServlet {
 		
 		//command가 "GetCatInfo"이면 catId에 해당하는 고양이 정보를 얻어와서 response에 담아서 보내기 
 		if ("GetCatInfo".equals(command)) {
-		try {
 			CatDTO cat = null;
+			try {
+			
 			cat = CatService.getInstance().getCat(1);
 			System.out.println(cat); //테스트용
 			response.setContentType("application/json; charset=UTF-8");
