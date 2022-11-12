@@ -1,8 +1,10 @@
 import Other from "../components/Other";
 import Pictures from "../components/Pictures";
 import React, { useState } from "react";
+import { Article } from "../styles/Style";
+import { HomeWrapper, HomeMain } from "../styles/HomeStyle";
 
-export function Home({cats}) {
+export function Home({ cats }) {
   const [UpdateToggle, setUpdateToggle] = useState(false);
   const onUpdateToggle = () => {
     setUpdateToggle(!UpdateToggle);
@@ -10,16 +12,13 @@ export function Home({cats}) {
 
   return (
     <div>
-      <h1>Cat 검색</h1>
-      <br />
-      <div>
-        <Pictures cats={cats}/>
-      </div>
-
-      <br />
-      <div>
-        <Other cats={cats}/>
-      </div>
+      <HomeWrapper>
+        <Article>Cat 검색</Article>
+        <HomeMain>
+          <Pictures />
+        </HomeMain>
+        <Other />
+      </HomeWrapper>
     </div>
   );
 }

@@ -4,82 +4,92 @@ import CatContents from "../components/CatContents";
 import GoHomeBtn from "../components/GoHomeBtn";
 import MoreBtn from "../components/MoreBtn";
 import MorePictures from "../components/MorePictures";
-import { axiosCatPictures, axiosCatData } from "../api/getCats";
 import axios from "axios";
 import {
   Wrapper,
   Main,
-  More,
+  Bottom,
   MainImage,
   Contents,
   Article,
   GoHomePage,
+  EtcSection,
+  MoreImage,
+  Line,
 } from "../styles/Style";
 
 // 상세설명페이지
 function AboutPage() {
-  // 데이터 db로 불러오기 !
+  // URL 파라미터를 이용해서 고양이 변경
+  const { catId } = useParams();
+  console.log(catId); // about/:catId 에서 파라미터 catId(0,1,2,...)확인
+
+  // 고양이 데이터
   const [cats, setCats] = useState([
     {
       id: 0,
-      species: "",
       description: "",
-      personality: "",
-      weight: "",
-      hair: "",
+      hairType: "",
+      origin: "",
+      size: "",
+      species: "",
+      temper: "",
     },
   ]);
 
-  const { catId } = useParams();
-  // console.log(catId); // about/:catId 에서 파라미터 catId(0,1,2,...)확인
-
+  // axios 사용해서 서버로부터 데이터 불러옴 : 고양이 정보
   useEffect(() => {
-    // axios 사용
-    // const data = axiosCatData();
+    const requestParams = { command: "GetCatInfo", catId: catId };
 
-    const requestParams = { command: "GetCatInfo", catId: 1 };
-
-    const responseData = axios
+    // promise 객체는 내부에서 풀어주어야 함
+    axios
       .get("http://localhost:8080/cat/cat", {
         params: requestParams,
       })
-      .then(response => setCats(response.data))
+      .then((response) => setCats(response.data))
       .catch(function (error) {
         console.log(error);
-      })
-      
-    //   console.log(responseData);
-    //   console.log(responseData.data);
-    // const data = responseData.data;
-    // data.then((data) => setCats(data));
+      });
   }, []);
-  
 
-  // catProfile : 고양이 객체
-  // const catProfile = cats[catId];
-  // console.log(catProfile);
-  
+  console.log(cats); //확인
+
+  // 그림 URL : json 처럼
+  const [catUrl, setCatUrl] = useState({});
+
+  useEffect(() => {
+    const requestParams = { command: "getPictures", catId: catId };
+
+    axios
+      .get("http://localhost:8080/cat/picture", {
+        params: requestParams,
+      })
+      .then((response) => setCatUrl(response.data))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(catUrl); // 확인
+  // console.log(catUrl[0]);
 
   return (
     <div>
-      {/* {catProfile.id} */}
       <Wrapper>
-        <Article>
-          <b> " {cats.species} " </b>{" "}
-        </Article>
+        <Article>" {cats.species} "</Article>
         <GoHomePage>
           <GoHomeBtn />
         </GoHomePage>
         <Main>
-          <MainImage src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200309_166%2F1583725050886CTWAw_JPEG%2F19860647745281435_-647047757.jpeg" />
+          <MainImage src={catUrl[0]} alt={cats.species} />
           <Contents>
-            <CatContents catProfile={cats} />
+            <CatContents cats={cats} />
           </Contents>
         </Main>
-        <More>
-          {/* <MorePictures catProfile={catProfile} /> */}
-        </More>
-        {/* <MoreBtn catProfile={catProfile} /> */}
+        <Bottom>
+          <MorePictures catUrl={catUrl} species={cats.species} />
+          <MoreBtn cats={cats} />
+        </Bottom>
       </Wrapper>
     </div>
   );

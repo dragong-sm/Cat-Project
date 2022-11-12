@@ -1,6 +1,6 @@
 import React from "react";
 import GoHomeBtn from "../components/GoHomeBtn";
-import { GoHomePage } from "../styles/Style";
+import { GoHomePage, Wrapper } from "../styles/Style";
 
 export function ErrorPage() {
   return (

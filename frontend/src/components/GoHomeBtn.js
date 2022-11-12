@@ -1,12 +1,13 @@
 import React from "react";
+import { Button } from "../styles/Style";
 
 function GoHomeBtn() {
   return (
-    <button>
-      <a href="http://localhost:3000/" target="_blank">
-        Move to Homepage
+    <Button>
+      <a href="http://localhost:3000/" target="_self">
+        ⌛ Move to Homepage
       </a>
-    </button>
+    </Button>
   );
 }
 
