@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../styles/Style";
 
-function MoreBtn({ cats }) {
+function MoreBtn({ catProfile }) {
   const searchURL =
     `https://search.naver.com/search.naver?where=image&sm=tab_jum&query=` +
-    cats.species;
+    catProfile.species;
 
   return (
     <div>
