@@ -2,7 +2,7 @@ import Other from "../components/Other";
 import Pictures from "../components/Pictures";
 import React, { useState } from "react";
 import { Article } from "../styles/Style";
-import { HomeWrapper, HomeMain } from "../styles/HomeStyle";
+import { HomeWrapper, HomeMain } from "../styles/homestyles";
 
 export function Home({ cats }) {
   const [UpdateToggle, setUpdateToggle] = useState(false);
